@@ -70,7 +70,7 @@ public class ConnectionScreen extends JPanel{
 		this.submit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				if(fileAdmin.openFile(jtfFile.getText(), jtfPassword.getText())!=null){
-					HashMap<String, String> hm = fileAdmin.openFile(jtfFile.getText(), jtfPassword.getText());
+					HashMap<byte[], byte[]> hm = fileAdmin.openFile(jtfFile.getText(), jtfPassword.getText());
 					myWindow.setFileAdmin(fileAdmin);
 					myWindow.changeScreen();
 				}

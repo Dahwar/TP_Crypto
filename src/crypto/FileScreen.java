@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -127,7 +128,7 @@ public class FileScreen extends JPanel {
 				if(fileAdmin.search(jtfSearch.getText())!=null)
 					jtfSearchResult.setText(fileAdmin.search(jtfSearch.getText()));
 				else
-					jtfSearchResult.setText("Not Found");
+					jtfSearchResult.setText("Error : Not Found");
 			}
 		});
 		
@@ -136,7 +137,7 @@ public class FileScreen extends JPanel {
 				if(fileAdmin.add(jtfAddId.getText(),jtfAddPassword.getText()))
 					jtfAddResult.setText("Added");
 				else
-					jtfAddResult.setText("Error : Not Added");
+					jtfAddResult.setText("Error : ID already set");
 			}
 		});
 		

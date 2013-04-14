@@ -25,10 +25,10 @@ public class Decryptor {
 		}	
 	}
 
-	public String decrypt(String string){
+	public String decrypt(byte[] byteTable){
 		try {
-			return new String(this.cipher.doFinal(string.getBytes()));
-		} catch (IllegalBlockSizeException | BadPaddingException e) {
+			return new String(this.cipher.doFinal(byteTable), "ISO-8859-2");
+		} catch (IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return null;
 		}

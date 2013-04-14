@@ -21,14 +21,14 @@ public class FileAdministrator {
 	
 	private String fileName;
 	
-	private HashMap<String, String> hm;
+	private HashMap<byte[], byte[]> hm;
 	
-	public HashMap<String, String> openFile(String file, String password) {
+	public HashMap<byte[], byte[]> openFile(String file, String password) {
 		this.decryptFile = new Decryptor(password);
 		this.encryptFile = new Encryptor(password);
 		this.fileName = file;
 		try (ObjectInputStream ois = new ObjectInputStream(new CipherInputStream(new FileInputStream(new File(file)), this.decryptFile.getCypher()));){
-			this.hm = (HashMap<String, String>) ois.readObject();
+			this.hm = (HashMap<byte[], byte[]>) ois.readObject();
 			return this.hm;
 		}
 			catch (IOException | ClassNotFoundException e) {
@@ -37,35 +37,37 @@ public class FileAdministrator {
 		}
 	}
 	
-	public HashMap<String, String> getHashMap(){
+	public HashMap<byte[], byte[]> getHashMap(){
 		return this.hm;
 	}
 	
 	public String search(String id){
-		for(Iterator<String> i=this.hm.keySet().iterator();i.hasNext();){
+		for(Iterator<byte[]> i=this.hm.keySet().iterator();i.hasNext();){
             Object key=i.next();
-            if(this.decryptString.decrypt((String) key).equals(id)){
-            	return this.decryptString.decrypt((String) hm.get(key));
+            if(this.decryptString.decrypt((byte[]) key).equals(id)){
+            	return this.decryptString.decrypt(hm.get(key));
             }
         }
 		return null;
 	}
 	
 	public boolean add(String id, String password){
+		for(Iterator<byte[]> i=this.hm.keySet().iterator();i.hasNext();){
+            Object key=i.next();
+            if(this.decryptString.decrypt((byte[]) key).equals(id)){
+            	return false;
+            }
+        }
 		this.hm.put(this.encryptString.encrypt(id), this.encryptString.encrypt(password));
 		this.putHashMapInFile();
-		for(Iterator<String> i=this.hm.keySet().iterator();i.hasNext();){
-            Object key=i.next();
-            System.out.println(this.decryptString.decrypt((String)key) + " = " + this.decryptString.decrypt((String) hm.get(key)));
-        }
 		return true;
 	}
 	
 	public boolean delete(String id){
-		for(Iterator<String> i=this.hm.keySet().iterator();i.hasNext();){
+		for(Iterator<byte[]> i=this.hm.keySet().iterator();i.hasNext();){
             Object key=i.next();
-            if(this.decryptString.decrypt((String)key).equals(id)){
-            	hm.remove((String)key);
+            if(this.decryptString.decrypt((byte[]) key).equals(id)){
+            	hm.remove((byte[]) key);
             	this.putHashMapInFile();
             	return true;
             }

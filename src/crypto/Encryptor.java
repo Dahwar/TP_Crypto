@@ -25,9 +25,9 @@ public class Encryptor {
 		}	
 	}
 	
-	public String encrypt(String string){
+	public byte[] encrypt(String string){
 		try {
-			return new String(this.cipher.doFinal(string.getBytes()));
+			return this.cipher.doFinal(string.getBytes());
 		} catch (IllegalBlockSizeException | BadPaddingException e) {
 			e.printStackTrace();
 			return null;

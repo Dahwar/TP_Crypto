@@ -16,14 +16,14 @@ public class Main {
 		
 		Window window = new Window();
 		
-		Encryptor cryptString = new Encryptor("famas2713");
+		/*Encryptor cryptString = new Encryptor("famas2713");
 		
 		Encryptor cryptFile = new Encryptor("azerty");
 
 		String id = "Florent";
 		String password = "Lacroix";
 		
-		HashMap<String, String> map = new HashMap<>();
+		HashMap<byte[], byte[]> map = new HashMap<>();
 		map.put(cryptString.encrypt(id), cryptString.encrypt(password));
 		
 		try (ObjectOutputStream oos = new ObjectOutputStream(new CipherOutputStream(new FileOutputStream(new File("file")), cryptFile.getCypher()));){
@@ -32,7 +32,7 @@ public class Main {
 		}
 			catch (java.io.IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		/*try (ObjectInputStream ois = new ObjectInputStream(new CipherInputStream(new FileInputStream(new File("file")), decryptFile.getCypher()));){
 			HashMap<String, String> hm = (HashMap<String, String>) ois.readObject();

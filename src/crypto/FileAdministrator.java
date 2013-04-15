@@ -88,4 +88,12 @@ public class FileAdministrator {
 			e.printStackTrace();
 		}
 	}
+
+	public void createNewFile(String file, String password) {
+		this.decryptFile = new Decryptor(password);
+		this.encryptFile = new Encryptor(password);
+		this.fileName = file;
+		this.hm = new HashMap<byte[], byte[]>();
+		this.putHashMapInFile();
+	}
 }

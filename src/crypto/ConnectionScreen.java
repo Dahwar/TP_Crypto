@@ -55,7 +55,7 @@ public class ConnectionScreen extends JPanel{
 		this.JPNorth.setLayout(new GridLayout(7,1));
 
 		Font police = new Font("Calibri", Font.PLAIN, 12);
-		Font policeTitle = new Font("Calibri", Font.PLAIN, 24);
+		Font policeTitle = new Font("Calibri", Font.BOLD, 24);
 		
 		this.jtfFile.setFont(police);
 		this.jtfFile.setPreferredSize(new Dimension(150, 30));
@@ -122,7 +122,7 @@ public class ConnectionScreen extends JPanel{
 		this.JPNorth.add(this.JPCreate);
 		this.JPNorth.add(this.JPNewFile);
 		this.JPNorth.add(this.JPSubmitNew);
-				
+		
 		this.add(this.JPNorth, BorderLayout.NORTH);
 		
 		this.submit.addActionListener(new ActionListener(){

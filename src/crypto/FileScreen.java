@@ -19,7 +19,8 @@ public class FileScreen extends JPanel {
 	
 	private JPanel JPSearch = new JPanel();
 	private JPanel JPAdd = new JPanel();
-	private JPanel JPDelete= new JPanel();
+	private JPanel JPDelete = new JPanel();
+	private JPanel JPModify = new JPanel();
 	private JPanel JPReturn= new JPanel();
 	private JPanel JPNorth = new JPanel();
 	
@@ -33,6 +34,12 @@ public class FileScreen extends JPanel {
 	private JTextField jtfAddPassword = new JTextField("Password");
 	private JTextField jtfAddResult = new JTextField();
 	private JButton buttonAdd = new JButton("Add");
+	
+	private JLabel labelModify = new JLabel("Modify");
+	private JTextField jtfModifyId = new JTextField("ID");
+	private JTextField jtfModifyPassword = new JTextField("New Password");
+	private JTextField jtfModifyResult = new JTextField();
+	private JButton buttonModify = new JButton("Modify");
 	
 	private JLabel labelDelete = new JLabel("Delete");
 	private JTextField jtfDeleteId = new JTextField("ID");
@@ -49,7 +56,7 @@ public class FileScreen extends JPanel {
 		this.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
 		
-		this.JPNorth.setLayout(new GridLayout(4,1));
+		this.JPNorth.setLayout(new GridLayout(5,1));
 
 		Font police = new Font("Calibri", Font.PLAIN, 12);
 		
@@ -88,6 +95,21 @@ public class FileScreen extends JPanel {
 		this.jtfDeleteResult.setForeground(Color.BLACK);
 		this.jtfDeleteResult.setBackground(Color.WHITE);
 		
+		this.jtfModifyId.setFont(police);
+		this.jtfModifyId.setPreferredSize(new Dimension(150, 30));
+		this.jtfModifyId.setForeground(Color.BLACK);
+		this.jtfModifyId.setBackground(Color.WHITE);
+		
+		this.jtfModifyPassword.setFont(police);
+		this.jtfModifyPassword.setPreferredSize(new Dimension(150, 30));
+		this.jtfModifyPassword.setForeground(Color.BLACK);
+		this.jtfModifyPassword.setBackground(Color.WHITE);
+		
+		this.jtfModifyResult.setFont(police);
+		this.jtfModifyResult.setPreferredSize(new Dimension(150, 30));
+		this.jtfModifyResult.setForeground(Color.BLACK);
+		this.jtfModifyResult.setBackground(Color.WHITE);
+		
 		this.JPSearch.setBackground(Color.LIGHT_GRAY);
 		this.JPSearch.add(this.labelSearch);
 		this.JPSearch.add(this.jtfSearch);
@@ -107,10 +129,18 @@ public class FileScreen extends JPanel {
 		this.JPDelete.add(this.buttonDelete);
 		this.JPDelete.add(this.jtfDeleteResult);
 		
+		this.JPModify.setBackground(Color.LIGHT_GRAY);
+		this.JPModify.add(this.labelModify);
+		this.JPModify.add(this.jtfModifyId);
+		this.JPModify.add(this.jtfModifyPassword);
+		this.JPModify.add(this.buttonModify);
+		this.JPModify.add(this.jtfModifyResult);
+		
 		this.JPReturn.add(this.returnToMain);
 		
 		this.JPNorth.add(this.JPSearch);
 		this.JPNorth.add(this.JPAdd);
+		this.JPNorth.add(this.JPModify);
 		this.JPNorth.add(this.JPDelete);
 		this.JPNorth.add(this.JPReturn);
 				
@@ -124,6 +154,9 @@ public class FileScreen extends JPanel {
 				jtfAddId.setText("ID");
 				jtfAddPassword.setText("Password");
 				jtfAddResult.setText("");
+				jtfModifyId.setText("ID");
+				jtfModifyPassword.setText("New Password");
+				jtfModifyResult.setText("");
 				jtfDeleteId.setText("ID");
 				jtfDeleteResult.setText("");
 				fileAdmin.setHashMapToNull();
@@ -147,6 +180,20 @@ public class FileScreen extends JPanel {
 					jtfAddResult.setText("Added");
 				else
 					jtfAddResult.setText("Error : ID already set");
+			}
+		});
+		
+		this.buttonModify.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(fileAdmin.search(jtfModifyId.getText())!=null){
+					fileAdmin.delete(jtfModifyId.getText());
+					fileAdmin.add(jtfModifyId.getText(), jtfModifyPassword.getText());
+					jtfModifyResult.setText("Done");
+				}
+				else{
+					jtfModifyResult.setText("Error : ID not found");
+				}
 			}
 		});
 		

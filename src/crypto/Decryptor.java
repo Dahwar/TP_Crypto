@@ -11,10 +11,28 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * 
+ * Permits to decipher a byte char and return a String
+ * 
+ * @author Florent LACROIX & Laetitia GAIGNIER
+ * @version 1.0
+ *
+ */
 public class Decryptor {
 
 	private Cipher cipher;
 
+	/**
+	 * 
+	 * Initialize the {@link Decryptor} (and the Cipher)
+	 * 
+	 * @param keyPass Key for init the {@link Decryptor}
+	 * 
+	 * @see Cipher
+	 * @see Decryptor
+	 * 
+	 */
 	public Decryptor(String keyPass){
 		try {
 			Key key = new SecretKeySpec(keyPass.getBytes("ISO-8859-2"),"Blowfish");
@@ -24,7 +42,18 @@ public class Decryptor {
 			e.printStackTrace();
 		}	
 	}
-
+	
+    /**
+     * 
+     * Decrypt the byte char in parameter
+     * 
+     * @param byteTable byte char to decipher
+     * 
+     * @return a string deciphered
+     * 
+     * @see Cipher
+     * 
+     */
 	public String decrypt(byte[] byteTable){
 		try {
 			return new String(this.cipher.doFinal(byteTable), "ISO-8859-2");
@@ -34,6 +63,13 @@ public class Decryptor {
 		}
 	}
 	
+	/**
+	 * 
+	 * Return the cipher
+	 * 
+	 * @return the cipher of the {@link Decryptor}
+	 * 
+	 */
 	public Cipher getCypher(){
 		return this.cipher;
 	}

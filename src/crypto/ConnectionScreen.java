@@ -15,6 +15,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * Create a screen to open or create a encrypted file
+ * 
+ * @author Florent LACROIX & Laetitia GAIGNIER
+ * @version 1.0
+ *
+ * @see Window
+ *
+ */
 public class ConnectionScreen extends JPanel{
 	
 	private FileAdministrator fileAdmin = new FileAdministrator();
@@ -46,6 +56,16 @@ public class ConnectionScreen extends JPanel{
 
 	private Window myWindow;
 	
+	/**
+	 * 
+	 * Put the different elements in the screen, and organize them
+	 * 
+	 * @param window the {@link Window} who instantiate the {@link ConnectionScreen}
+	 * 
+	 * @see Window
+	 * @see FileAdministrator
+	 * 
+	 */
 	public ConnectionScreen(Window window){
 		this.myWindow = window;
 		

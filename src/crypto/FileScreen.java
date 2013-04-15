@@ -13,6 +13,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * Create a screen to search a ID, add a ID-password to the HashMap, modify a password and delete a pair
+ * 
+ * @author Florent LACROIX & Laetitia GAIGNIER
+ * @version 1.0
+ *
+ * @see Window
+ * @see FileAdministrator
+ * 
+ */
 public class FileScreen extends JPanel {
 	
 	private FileAdministrator fileAdmin = new FileAdministrator();
@@ -50,6 +61,16 @@ public class FileScreen extends JPanel {
 
 	private Window myWindow;
 	
+	/**
+	 * 
+	 * Put the different elements in the screen, and organize them
+	 * 
+	 * @param window the {@link Window} who instantiate the {@link FileScreen}
+	 * 
+	 * @see Window
+	 * @see FileAdministrator
+	 * 
+	 */
 	public FileScreen(Window window){
 		this.myWindow = window;
 		
@@ -208,6 +229,15 @@ public class FileScreen extends JPanel {
 		});
 	}
 	
+	/**
+	 * 
+	 * Set the {@link FileAdministrator} of the {@link FileScreen}
+	 * 
+	 * @param fileAdmin the {@link FileAdministrator} instantiate in the {@link FileScreen}
+	 * 
+	 * @see FileScreen
+	 * 
+	 */
 	public void setFileAdmin(FileAdministrator fileAdmin){
 		this.fileAdmin = fileAdmin;
 	}

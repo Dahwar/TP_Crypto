@@ -12,6 +12,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * 
+ * Instantiate a {@link ConnectionScreen} and a {@link FileScreen}, and switch between both of them
+ * 
+ * @author Florent LACROIX & Laetitia GAIGNIER
+ * @version 1.0
+ *
+ * @see ConnectionScreen
+ * @see FileScreen
+ *
+ */
 public class Window extends JFrame {
 		
 	private JPanel connectionScreen = new ConnectionScreen(this);
@@ -23,6 +34,11 @@ public class Window extends JFrame {
 	JMenu JMenuFiles = new JMenu("Files");
 	JMenuItem itemFiles_Quit = new JMenuItem("Quit");
  
+	/**
+	 * 
+	 * Create the Window of the application
+	 * 
+	 */
 	public Window(){
 		this.setTitle("Crypto");
 		this.setSize(800, 600);
@@ -51,10 +67,24 @@ public class Window extends JFrame {
 	    });
 	}
 	
+	/**
+	 * 
+	 * Pass to the next JPanel in the CardLayout
+	 * 
+	 */
 	public void changeScreen(){
 		this.cl.next(this.content);
 	}
 	
+	/**
+	 * 
+	 * Set the FileAdministrator in parameter in the {@link FileScreen}
+	 * 
+	 * @param fileAdmin fileAdministrator to set in the {@link FileScreen}
+	 * 
+	 * @see FileScreen
+	 * 
+	 */
 	public void setFileAdmin(FileAdministrator fileAdmin){
 		((FileScreen) this.fileScreen).setFileAdmin(fileAdmin);
 	}

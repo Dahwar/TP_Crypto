@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -120,10 +119,19 @@ public class FileScreen extends JPanel {
 		this.returnToMain.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				myWindow.changeScreen();
+				jtfSearch.setText("ID");
+				jtfSearchResult.setText("");
+				jtfAddId.setText("ID");
+				jtfAddPassword.setText("Password");
+				jtfAddResult.setText("");
+				jtfDeleteId.setText("ID");
+				jtfDeleteResult.setText("");
+				fileAdmin.setHashMapToNull();
 			}
 		});
 		
 		this.buttonSearch.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event){
 				if(fileAdmin.search(jtfSearch.getText())!=null)
 					jtfSearchResult.setText(fileAdmin.search(jtfSearch.getText()));
@@ -133,6 +141,7 @@ public class FileScreen extends JPanel {
 		});
 		
 		this.buttonAdd.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event){
 				if(fileAdmin.add(jtfAddId.getText(),jtfAddPassword.getText()))
 					jtfAddResult.setText("Added");
@@ -142,6 +151,7 @@ public class FileScreen extends JPanel {
 		});
 		
 		this.buttonDelete.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent event){
 				if(fileAdmin.delete(jtfDeleteId.getText()))
 					jtfDeleteResult.setText("Done");

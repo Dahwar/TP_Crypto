@@ -41,11 +41,15 @@ public class FileAdministrator {
 		return this.hm;
 	}
 	
+	public void setHashMapToNull(){
+		this.hm = null;
+	}
+	
 	public String search(String id){
 		for(Iterator<byte[]> i=this.hm.keySet().iterator();i.hasNext();){
             Object key=i.next();
             if(this.decryptString.decrypt((byte[]) key).equals(id)){
-            	return this.decryptString.decrypt(hm.get(key));
+            	return this.decryptString.decrypt(this.hm.get(key));
             }
         }
 		return null;
@@ -67,7 +71,7 @@ public class FileAdministrator {
 		for(Iterator<byte[]> i=this.hm.keySet().iterator();i.hasNext();){
             Object key=i.next();
             if(this.decryptString.decrypt((byte[]) key).equals(id)){
-            	hm.remove((byte[]) key);
+            	this.hm.remove((byte[]) key);
             	this.putHashMapInFile();
             	return true;
             }
